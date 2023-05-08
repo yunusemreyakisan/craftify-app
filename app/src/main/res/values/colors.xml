@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Theme -->
+    <color name="light_primary">#FF000000</color>
+    <color name="light_secondary">#FFFFFFFF</color>
+    <color name="neutral">#808080</color>
+
+    <!-- Dark Theme -->
+    <color name="dark_primary">#FFFFFFFF</color>
+    <color name="dark_secondary">#FF000000</color>
+</resources>
