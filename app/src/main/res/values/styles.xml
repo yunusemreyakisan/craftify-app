@@ -2,7 +2,7 @@
 <resources>
     <!-- Tab Text Style -->
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/urbanist_medium</item>
+        <item name="android:fontFamily">@font/urbanist_regular</item>
     </style>
 
     <!-- Tab Text Style -->
@@ -10,4 +10,13 @@
         <item name="android:fontFamily">@font/urbanist_bold</item>
         <item name="android:textSize">30sp</item>
     </style>
+
+
+<style name="Fab_Layout" parent="ShapeAppearanceOverlay.Material3.FloatingActionButton">
+
+    <item name="android:tint">@color/light_secondary</item>
+    <item name="backgroundTint">@color/light_primary</item>
+
+</style>
+
 </resources>

@@ -4,5 +4,7 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/dark_primary</item>
         <item name="colorSecondary">@color/dark_secondary</item>
+        <item name="statusBarBackground">@color/dark_primary</item>
+        <item name="android:navigationBarColor">@color/dark_secondary</item>
     </style>
 </resources>

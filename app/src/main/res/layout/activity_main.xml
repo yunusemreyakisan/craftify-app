@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foregroundTint="#FFFFFF"
     tools:context=".MainActivity">
 
 
@@ -11,22 +12,21 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/light_primary"
-        app:titleTextColor="@color/light_secondary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Craftify"
         app:titleTextAppearance="@style/appbar_layout"
-        app:title="Notlarım" >
+        app:titleTextColor="@color/light_secondary">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1/3"
-            android:textColor="@color/neutral"
-            android:textSize="20sp"
-            android:fontFamily="@font/urbanist_medium"
             android:layout_gravity="end"
             android:layout_marginHorizontal="20dp"
-            />
+            android:fontFamily="@font/urbanist_medium"
+            android:text="1/3"
+            android:textColor="@color/neutral"
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -35,6 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:tabIconTint="@color/light_secondary"
         app:tabIndicatorColor="@color/light_secondary"
@@ -50,6 +52,20 @@
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
         tools:layout_editor_absoluteX="0dp" />
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/plus"
+        app:tint="@color/light_secondary"
+        style="@style/Fab_Layout"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/fab" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
