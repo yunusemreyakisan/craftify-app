@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Craftify</string>
     <string name="fab">Fab</string>
+    <string name="every_big_step_start_with_small_step_notes_your_first_idea_and_start_your_journey">Every big step start with small step. Notes your first idea and start your journey!</string>
+    <string name="yolculu_una_ba_la">Yolculuğuna başla</string>
 </resources>

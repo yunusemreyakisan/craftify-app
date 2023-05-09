@@ -19,6 +19,7 @@
         app:titleTextColor="@color/light_secondary">
 
         <TextView
+            android:id="@+id/notesSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -66,6 +67,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/viewPager"
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="@string/fab" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,16 +8,16 @@ import com.morestudio.craftify.model.Note
 
 
 @Database(entities = [Note::class], version = 1)
-abstract class AppDatabase : RoomDatabase() {
+abstract class NoteDatabase : RoomDatabase() {
     abstract fun noteDAO(): NoteDAO?
 
     companion object {
-        private var INSTANCE: AppDatabase? = null
-        fun getDBInstance(context: Context): AppDatabase? {
+        private var INSTANCE: NoteDatabase? = null
+        fun getDBInstance(context: Context): NoteDatabase? {
             if (INSTANCE == null) {
                 INSTANCE = databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java, "Ornek_DB"
+                    NoteDatabase::class.java, "Note"
                 )
                     .allowMainThreadQueries()
                     .build()
