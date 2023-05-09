@@ -20,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <!-- Notes Size Zero Layout (Visibility) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/notesSizeZeroLayout"
