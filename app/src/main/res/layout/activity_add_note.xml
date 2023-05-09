@@ -17,14 +17,13 @@
         android:contentDescription="extended fab"
         android:text="Notu kaydet"
         app:icon="@drawable/plus"
-        style="@style/Fab_Layout_Extended"
+        android:fontFamily="@font/urbanist_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabClose"
-        style="@style/Fab_Layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
@@ -34,7 +33,7 @@
         android:src="@drawable/close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/light_secondary" />
+        />
 
 
     <EditText
@@ -90,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="8 Mayıs, 2023"
+                android:fontFamily="@font/urbanist_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
