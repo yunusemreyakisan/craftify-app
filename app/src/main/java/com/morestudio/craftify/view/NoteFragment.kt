@@ -20,6 +20,8 @@ class NoteFragment : Fragment() {
     lateinit var notesAdapter : NoteAdapter
     lateinit var binding : FragmentNoteBinding
     private var notes : List<Note?> = ArrayList()
+    lateinit var database : NoteDatabase
+    var noteSize : Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,25 +35,22 @@ class NoteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentNoteBinding.inflate(inflater, container, false)
 
-        val database  = NoteDatabase.getDBInstance(requireContext())!!
+        database  = NoteDatabase.getDBInstance(requireContext())!!
         Log.e("Notes: ", database.noteDAO()?.getAllNotes().toString())
-        /*val note  = database.noteDAO()
-            ?.insertNote(
-                Note( title = "sdıuchgbvsudyvucıusdyvc bıusdvuchbsdıucbsdc", content =  "ıduskbfcsduıcbıusdhcouısgvdbucıkjbsdıvychjkbsdoıuvcj jsbkducvyhjsdbkcıuvyhjds bkcuvyhjds bkbcıuvyh djs", createdAt = Helpers.olusturmaZamaniniGetir(), isPinned = false))
 
-         */
-        Log.e("Notes: ", database.noteDAO()?.getAllNotes().toString())
+
 
         notes = database.noteDAO()?.getAllNotes()!!
+        Log.e("Notes: ", database.noteDAO()?.getAllNotes().toString())
 
-
-        var noteSize = NoteDatabase.getDBInstance(requireContext())?.noteDAO()?.getNoteCount()
+        //Notes size
+        noteSize = database.noteDAO()?.getNoteCount()
             ?.let { Integer.valueOf(it)}
+
 
         if(noteSize == 0){
             binding.notesSizeZeroLayout.visibility = View.VISIBLE
         }
-
         //set Recyclerview
         setRecyclerAdapter()
 
@@ -60,6 +59,10 @@ class NoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+
 
     }
 

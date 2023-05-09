@@ -13,10 +13,18 @@
 
 
 <style name="Fab_Layout" parent="ShapeAppearanceOverlay.Material3.FloatingActionButton">
-
     <item name="android:tint">@color/light_secondary</item>
     <item name="backgroundTint">@color/light_primary</item>
 
 </style>
+
+    <style name="Fab_Layout_Extended" parent="ShapeAppearanceOverlay.Material3.FloatingActionButton">
+        <item name="tint">@color/light_secondary</item>
+        <item name="backgroundTint">@color/light_primary</item>
+        <item name="android:textColor">@color/light_secondary</item>
+        <item name="iconTint">@color/light_secondary</item>
+
+
+    </style>
 
 </resources>

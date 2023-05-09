@@ -1,5 +1,7 @@
 package com.morestudio.craftify.helpers
 
+import android.app.Activity
+import android.content.Intent
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -29,6 +31,12 @@ object Helpers {
             }
         }
         return false
+    }
+
+
+    //Intent
+    fun going(bulunulanSinif: Activity, gidilecekSinif: Class<*>){
+        bulunulanSinif.startActivity(Intent(bulunulanSinif, gidilecekSinif))
     }
 
 

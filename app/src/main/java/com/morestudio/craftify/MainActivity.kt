@@ -9,7 +9,9 @@ import com.morestudio.craftify.adapter.ViewPagerAdapter
 import com.morestudio.craftify.data.NoteDatabase
 import com.morestudio.craftify.databinding.ActivityMainBinding
 import com.morestudio.craftify.helpers.Helpers
+import com.morestudio.craftify.helpers.Helpers.going
 import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.view.AddNote
 
 val tabArray = arrayOf(
     "Notlarım",
@@ -33,12 +35,29 @@ class MainActivity : AppCompatActivity() {
             tab.text = tabArray[position]
         }.attach()
 
-        var noteSize = NoteDatabase.getDBInstance(applicationContext)?.noteDAO()?.getNoteCount()
-            ?.let { Integer.valueOf(it )}
-
-                binding.notesSize.text = noteSize.toString()
 
 
+
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val noteSize = NoteDatabase.getDBInstance(applicationContext)?.noteDAO()?.getNoteCount()
+            ?.let { Integer.valueOf(it)}
+
+        if(noteSize == 0){
+            binding.notesSize.text = noteSize.toString()
+        }else{
+            binding.notesSize.text = noteSize?.plus(1).toString()
+        }
+
+
+        binding.fab.setOnClickListener {
+            going(this@MainActivity, AddNote::class.java)
+        }
 
     }
 }
