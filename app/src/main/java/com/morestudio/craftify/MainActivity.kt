@@ -5,7 +5,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.morestudio.craftify.adapter.ViewPagerAdapter
-import com.morestudio.craftify.data.NoteDatabase
+import com.morestudio.craftify.data.database.NoteDatabase
 import com.morestudio.craftify.databinding.ActivityMainBinding
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.going

@@ -5,55 +5,58 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.morestudio.craftify.MainActivity
 import com.morestudio.craftify.R
-import com.morestudio.craftify.data.NoteDatabase
+import com.morestudio.craftify.data.database.NoteDatabase
+import com.morestudio.craftify.data.repository.NoteRepository
 import com.morestudio.craftify.databinding.ActivityAddNoteBinding
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.isFieldEmpty
 import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.viewmodel.AddNoteViewModel
+import com.morestudio.craftify.viewmodel.NoteFragmentViewModel
+import com.morestudio.craftify.viewmodel.factory.AddNoteViewModelFactory
+import com.morestudio.craftify.viewmodel.factory.NoteViewModelFactory
 
 class AddNote : AppCompatActivity() {
     lateinit var binding : ActivityAddNoteBinding
-    lateinit var database : NoteDatabase
-    var noteSize : Int? = 0
-    var isPinned : Boolean = false
+    lateinit var viewModel: AddNoteViewModel
+    var createdAt = Helpers.olusturmaZamaniniGetir() //get createdAt time
+    var isPinned : Boolean = false //Pinned State
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //DB Instance
-        database  = NoteDatabase.getDBInstance(applicationContext)!!
-        Log.e("Notes: ", database.noteDAO()?.getAllNotes().toString())
+        // Create the view model using the factory
+        val dataSource = applicationContext?.let { NoteDatabase.getDBInstance(it)?.noteDAO() }
+        val repository = dataSource?.let { NoteRepository(it) }
+        val viewModelFactory = repository?.let { AddNoteViewModelFactory(it) }
+        viewModel = viewModelFactory?.let {
+            ViewModelProvider(
+                this,
+                it
+            )[AddNoteViewModel::class.java]
+        }!!
 
 
-        binding.olusturulmaTarihiAddNote.text = Helpers.olusturmaZamaniniGetir()
+        //Getting createdAt time
+        binding.olusturulmaTarihiAddNote.text = createdAt
         binding.fabClose.setOnClickListener {
             super.onBackPressed()
         }
 
-
-        binding.isPinnedAddNote.setOnClickListener {
-
-        }
-
-
+        //FAB Listener
         binding.extendedFab.setOnClickListener {
-            saveNewNote()
+            saveNewNote(createdAt)
         }
 
+        //Update Theme
+        updateTheme()
 
-        val window = this.window
-        if(Helpers.isDarkThemeEnabled(this)){
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.statusBarColor = this.resources.getColor(R.color.md_theme_dark_background)
-        }else{
-            window.statusBarColor = this.resources.getColor(R.color.md_theme_light_background)
-        }
-
+        //Pinned
         binding.isPinnedAddNote.setOnClickListener {
             togglePin()
         }
@@ -62,7 +65,8 @@ class AddNote : AppCompatActivity() {
     }
 
 
-    fun togglePin() {
+    //Pinned Func
+    private fun togglePin() {
         isPinned = !isPinned // pinli durumun tersine çevir
         if (isPinned) {
             binding.isPinnedAddNote.setImageResource(R.drawable.true_pinned)
@@ -72,22 +76,32 @@ class AddNote : AppCompatActivity() {
     }
 
 
+    //Update Theme
+    fun updateTheme() {
+        val window = this.window
+        if(Helpers.isDarkThemeEnabled(this)){
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = this.resources.getColor(R.color.md_theme_dark_background)
+        }else{
+            window.statusBarColor = this.resources.getColor(R.color.md_theme_light_background)
+        }
+    }
 
-    fun saveNewNote(){
+
+
+    //Save new note
+    fun saveNewNote(createdAt : String){
         val title = binding.txtTitle.text.toString()
         val content = binding.txtContent.text.toString()
-        val createdAt = Helpers.olusturmaZamaniniGetir()
-
+        val createdAt = createdAt
 
         if(isFieldEmpty(title, content, createdAt)){
             Toast.makeText(this, "Lütfen fikrinizi giriniz", Toast.LENGTH_SHORT).show()
         }else{
-            val note  = database.noteDAO()
-                ?.insertNote(
-                    Note( title = title, content =  content, createdAt = createdAt, isPinned = isPinned)
-                )
+            viewModel.insert( Note( title = title, content =  content, createdAt = createdAt, isPinned = isPinned))
             Toast.makeText(this, "Fikriniz kaydedildi", Toast.LENGTH_SHORT).show()
-
+            //Going Notes page
             Helpers.going(this, MainActivity::class.java)
         }
 

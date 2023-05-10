@@ -2,26 +2,29 @@ package com.morestudio.craftify.view
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.morestudio.craftify.adapter.NoteAdapter
-import com.morestudio.craftify.data.NoteDatabase
+import com.morestudio.craftify.data.database.NoteDatabase
+import com.morestudio.craftify.data.repository.NoteRepository
 import com.morestudio.craftify.databinding.FragmentNoteBinding
-import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.viewmodel.NoteFragmentViewModel
+import com.morestudio.craftify.viewmodel.factory.NoteViewModelFactory
+import kotlinx.coroutines.launch
 
 
 class NoteFragment : Fragment() {
     lateinit var notesAdapter : NoteAdapter
     lateinit var binding : FragmentNoteBinding
     private var notes : List<Note?> = ArrayList()
-    lateinit var database : NoteDatabase
-    var noteSize : Int? = 0
+    private lateinit var viewModel: NoteFragmentViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,22 +38,20 @@ class NoteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentNoteBinding.inflate(inflater, container, false)
 
-        database  = NoteDatabase.getDBInstance(requireContext())!!
-        Log.e("Notes: ", database.noteDAO()?.getAllNotes().toString())
+        // Create the view model using the factory
+        val dataSource = context?.let { NoteDatabase.getDBInstance(it)?.noteDAO() }
+        val repository = dataSource?.let { NoteRepository(it) }
+        val viewModelFactory = repository?.let { NoteViewModelFactory(it) }
+        viewModel = viewModelFactory?.let {
+            ViewModelProvider(
+                this,
+                it
+            )[NoteFragmentViewModel::class.java]
+        }!!
 
+        //Get All notes
+        notes = viewModel.getAllNotes()
 
-
-        notes = database.noteDAO()?.getAllNotes()!!
-        Log.e("Notes: ", database.noteDAO()?.getAllNotes().toString())
-
-        //Notes size
-        noteSize = database.noteDAO()?.getNoteCount()
-            ?.let { Integer.valueOf(it)}
-
-
-        if(noteSize == 0){
-            binding.notesSizeZeroLayout.visibility = View.VISIBLE
-        }
         //set Recyclerview
         setRecyclerAdapter()
 
@@ -60,13 +61,18 @@ class NoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-
+        //Note Size Update UI
+        lifecycleScope.launch {
+            val noteSize = viewModel.getAllNotesSize()
+            Log.e("Notes Size: ", noteSize.toString())
+            if (noteSize == 0) {
+                binding.notesSizeZeroLayout.visibility = View.VISIBLE
+            } else {
+                binding.notesSizeZeroLayout.visibility = View.GONE
+            }
+        }
 
     }
-
-
 
     //Set Adapter
     fun setRecyclerAdapter(){
@@ -76,4 +82,9 @@ class NoteFragment : Fragment() {
         binding.notesRecyclerView.adapter = notesAdapter
     }
 
+
+
+
 }
+
+

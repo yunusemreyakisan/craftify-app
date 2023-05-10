@@ -1,4 +1,4 @@
-package com.morestudio.craftify.data
+package com.morestudio.craftify.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,16 +11,26 @@ import com.morestudio.craftify.model.Note
 
 @Dao
 interface NoteDAO {
+
+    //Get Notes Size
     @Query("SELECT COUNT(*) FROM note")
     fun getNoteCount(): Int
+
+    //Get Notes
     @Query("SELECT * FROM note")
     fun getAllNotes(): List<Note?>
 
+    //Get Pinned Notes
     @Query("SELECT * FROM note WHERE isPinned = 1")
     fun getPinnedNotes(): List<Note?>
 
+    //Get Pinned Notes Size
     @Query("SELECT COUNT(isPinned) FROM note")
     fun getPinnedNoteCount(): Int
+
+    //Get Note by ID
+    @Query("SELECT * FROM note WHERE noteId = :id")
+    fun getNoteById(id: Long): Note
 
     //insertNote
     @Insert
