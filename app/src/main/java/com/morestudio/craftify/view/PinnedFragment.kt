@@ -22,7 +22,6 @@ import kotlinx.coroutines.launch
 
 
 class PinnedFragment : Fragment() {
-
     lateinit var binding : FragmentPinnedBinding
     lateinit var pinnedNotesAdapter : NoteAdapter
     private lateinit var viewModel: PinnedViewModel
@@ -51,8 +50,6 @@ class PinnedFragment : Fragment() {
                 it
             )[PinnedViewModel::class.java]
         }!!
-
-
 
         //Pinned Notes init
         pinnedNotes = viewModel.getAllPinnedNotes()
