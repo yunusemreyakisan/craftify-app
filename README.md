@@ -1,10 +1,9 @@
-# 📋 Craftify - Get your fastest note ever.
-**Tech Stack** --> Room Database, Lifecycle, MVVM, Coroutines
+# 📋 Craftify [![Kotlin](https://img.shields.io/badge/Kotlin-Language-purple.svg)](https://shields.io/) [![Room](https://img.shields.io/badge/Room-Database-blue.svg)](https://shields.io/) [![Coroutines](https://img.shields.io/badge/Coroutines-Async-red.svg)](https://shields.io/)
 
-## Features
 - Light/dark mode
 - i18n
-- Local Storage
+- Coroutines
+- Local Storage (Room)
 - Fastest UI
 
 
