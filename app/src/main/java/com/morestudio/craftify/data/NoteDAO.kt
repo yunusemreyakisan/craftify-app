@@ -16,14 +16,20 @@ interface NoteDAO {
     @Query("SELECT * FROM note")
     fun getAllNotes(): List<Note?>
 
-    //insertNote methodumuz ile icerisine birden fazla arguman atayabileyecegimizi soyluyoruz.
+    @Query("SELECT * FROM note WHERE isPinned = 1")
+    fun getPinnedNotes(): List<Note?>
+
+    @Query("SELECT COUNT(isPinned) FROM note")
+    fun getPinnedNoteCount(): Int
+
+    //insertNote
     @Insert
     fun insertNote(vararg note: Note?)
 
     @Update
     fun updateNote(note: Note?)
 
-    //deleteNote methodu ile not silinmesi saglanacak.
+    //deleteNote
     @Delete
     fun deleteNote(note: Note?)
 }

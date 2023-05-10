@@ -1,7 +1,9 @@
 package com.morestudio.craftify.helpers
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -19,7 +21,7 @@ object Helpers {
 
     //Olusturma zamanını al
     fun olusturmaZamaniniGetir(): String {
-        val sdf = SimpleDateFormat("dd MMMM, yyyy", Locale.getDefault())
+        val sdf = SimpleDateFormat("dd MMMM, yyyy hh:mm", Locale.getDefault())
         return sdf.format(Date())
     }
 
@@ -31,6 +33,11 @@ object Helpers {
             }
         }
         return false
+    }
+
+    fun isDarkThemeEnabled(context: Context): Boolean {
+        val nightModeFlags = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
     }
 
 

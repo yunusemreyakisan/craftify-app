@@ -2,6 +2,12 @@
 <resources>
     <string name="app_name">Craftify</string>
     <string name="fab">Fab</string>
-    <string name="every_big_step_start_with_small_step_notes_your_first_idea_and_start_your_journey">Every big step start with small step. Notes your first idea and start your journey!</string>
+    <string name="every_big_step_start_with_small_step_notes_your_first_idea_and_start_your_journey">Her büyük adım küçük bir adımla başlar. İlk fikrini not et ve yolculuğuna başla!</string>
     <string name="yolculu_una_ba_la">Yolculuğuna başla</string>
+    <string name="fikirlerinde_yolculuga_cik">Fikirlerine dal</string>
+    <string name="fikrinin_basligi_ne">Fikrinin başlığı ne?</string>
+    <string name="yeni_fikrin_ne">Yeni fikrin ne?</string>
+    <string name="henuz_not_pinlemedin">Henüz not pinlemedin</string>
+    <string name="notes">Notlarım</string>
+    <string name="pinned">Pinlediklerim</string>
 </resources>

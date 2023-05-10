@@ -1,22 +1,15 @@
 package com.morestudio.craftify
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.morestudio.craftify.adapter.ViewPagerAdapter
 import com.morestudio.craftify.data.NoteDatabase
 import com.morestudio.craftify.databinding.ActivityMainBinding
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.going
-import com.morestudio.craftify.model.Note
 import com.morestudio.craftify.view.AddNote
-
-val tabArray = arrayOf(
-    "Notlarım",
-    "Pinlediklerim"
-)
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -32,13 +25,20 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabArray[position]
+            when (position) {
+                0 -> tab.text = getString(R.string.notes)
+                1 -> tab.text = getString(R.string.pinned)
+            }
         }.attach()
 
-
-
-
-
+        val window = this.window
+        if (Helpers.isDarkThemeEnabled(this)) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = this.resources.getColor(R.color.md_theme_dark_background)
+        } else {
+            window.statusBarColor = this.resources.getColor(R.color.md_theme_light_background)
+        }
 
 
     }
@@ -46,11 +46,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val noteSize = NoteDatabase.getDBInstance(applicationContext)?.noteDAO()?.getNoteCount()
-            ?.let { Integer.valueOf(it)}
+            ?.let { Integer.valueOf(it) }
 
-        if(noteSize == 0){
+        if (noteSize == 0) {
             binding.notesSize.text = noteSize.toString()
-        }else{
+        } else {
             binding.notesSize.text = noteSize?.plus(1).toString()
         }
 

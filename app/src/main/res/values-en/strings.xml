@@ -3,5 +3,11 @@
     <string name="app_name">Craftify</string>
     <string name="fab">Fab</string>
     <string name="every_big_step_start_with_small_step_notes_your_first_idea_and_start_your_journey">Every big step start with small step. Notes your first idea and start your journey!</string>
-    <string name="yolculu_una_ba_la">Yolculuğuna başla</string>
+    <string name="yolculu_una_ba_la">Start your journey</string>
+    <string name="fikirlerinde_yolculuga_cik">Dive into your ideas</string>
+    <string name="fikrinin_basligi_ne">What\'s the title of your idea?</string>
+    <string name="yeni_fikrin_ne">What\'s your new idea?</string>
+    <string name="henuz_not_pinlemedin">You haven\'t pinned yet</string>
+    <string name="notes">Notes</string>
+    <string name="pinned">Pinned</string>
 </resources>
