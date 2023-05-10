@@ -10,4 +10,4 @@
 ## 📸 Screenshots
 | **Dark Theme (Home)**  | **Light Theme (Home)** | **Create** |
 | ------------ | ----------- | ----------------|
-<img src="https://github.com/yunusemreyakisan/craftify-app/assets/116274664/b0b0804a-71f2-4c3a-ae2c-4ceda646f9e0" width="260">| <img src="https://github.com/yunusemreyakisan/craftify-app/assets/116274664/2dcfcf53-6278-42de-9b05-9e15baf5baa9" width="260">| <img src="https://github.com/yunusemreyakisan/craftify-app/assets/116274664/ffbb48f2-bf4b-4cc9-a9a9-0ad4c36674d2" width="260"> |
+<img src="https://github.com/yunusemreyakisan/craftify-app/assets/116274664/c250dc09-bf41-4e98-8aff-7eb995eac9ec" width="260">| <img src="https://github.com/yunusemreyakisan/craftify-app/assets/116274664/f441b31a-c592-4042-b061-515f9900e1b9" width="260">| <img src="https://github.com/yunusemreyakisan/craftify-app/assets/116274664/926ea8c6-9296-4966-a0dd-87238e1fef1d" width="260"> |
