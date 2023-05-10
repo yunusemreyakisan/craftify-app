@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,7 @@ import com.morestudio.craftify.viewmodel.factory.NoteViewModelFactory
 import kotlinx.coroutines.launch
 
 
-class NoteFragment : Fragment() {
+class NoteFragment : Fragment()  {
     lateinit var notesAdapter : NoteAdapter
     lateinit var binding : FragmentNoteBinding
     private var notes : List<Note?> = ArrayList()
@@ -61,6 +62,8 @@ class NoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         //Note Size Update UI
         lifecycleScope.launch {
             val noteSize = viewModel.getAllNotesSize()
@@ -72,6 +75,11 @@ class NoteFragment : Fragment() {
             }
         }
 
+
+
+
+
+
     }
 
     //Set Adapter
@@ -81,7 +89,6 @@ class NoteFragment : Fragment() {
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.notesRecyclerView.adapter = notesAdapter
     }
-
 
 
 

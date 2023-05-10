@@ -18,11 +18,6 @@ class NoteFragmentViewModel(private val repository: NoteRepository) : ViewModel(
         return repository.getAllNotesSize()
     }
 
-    //Get Note by id
-    suspend fun getNoteById(id: Long): Note {
-        return repository.getNoteById(id)
-    }
-
     //Insert
     fun insert(note: Note) = viewModelScope.launch {
         repository.insert(note)

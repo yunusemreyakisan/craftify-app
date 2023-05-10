@@ -2,6 +2,7 @@ package com.morestudio.craftify
 
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.morestudio.craftify.adapter.ViewPagerAdapter
@@ -11,7 +12,7 @@ import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.going
 import com.morestudio.craftify.view.AddNote
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,4 +61,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
