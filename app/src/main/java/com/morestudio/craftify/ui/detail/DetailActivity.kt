@@ -18,43 +18,36 @@ import com.morestudio.craftify.viewmodel.factory.AddNoteViewModelFactory
 
 class DetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailBinding
-    lateinit var viewModel: AddNoteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //viewmodel
-        // Create the view model using the factory
-        val dataSource = applicationContext?.let { NoteDatabase.getDBInstance(it)?.noteDAO() }
-        val repository = dataSource?.let { NoteRepository(it) }
-        val viewModelFactory = repository?.let { AddNoteViewModelFactory(it) }
-        viewModel = viewModelFactory?.let {
-            ViewModelProvider(
-                this,
-                it
-            )[AddNoteViewModel::class.java]
-        }!!
 
-        //get intent data
-        getAndSetIntentData()
-
-        //TODO: Delete by id eklenecek.
-
-
-
-    }
-
-
-    //get Intent data
-    fun getAndSetIntentData() {
         val position = intent.getIntExtra("position", -1)
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         val createdAt = intent.getStringExtra("createdAt")
         val isPinned = intent.getIntExtra("isPinned", 0)
+        val id = intent.getIntExtra("id", 0)
 
+        //get intent data
+        getAndSetIntentData(position, title, content, createdAt, isPinned)
+
+        //TODO: Güncelleme ve silme islemleri yap.
+
+    }
+
+
+    //get Intent data
+    fun getAndSetIntentData(
+        position: Int,
+        title: String?,
+        content: String?,
+        createdAt: String?,
+        isPinned: Int
+    ) {
         if (position != -1 && title != null && content != null && createdAt != null) {
             // Pozisyon ve içerik bilgisi kullanimi
             Log.d("Position", "DetailActivity: $position")

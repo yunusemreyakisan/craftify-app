@@ -23,8 +23,4 @@ class AddNoteViewModel(private val repository: NoteRepository) : ViewModel() {
         repository.delete(note)
     }
 
-    //Delete by id
-    fun deleteById(noteId: Int) = viewModelScope.launch {
-        repository.deleteNoteById(noteId)
-    }
 }

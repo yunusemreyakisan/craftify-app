@@ -16,6 +16,13 @@ class Note(
     @ColumnInfo(name = "created_at") var createdAt: String?,
     @ColumnInfo(name = "isPinned") var isPinned: Boolean?
 ) {
+    constructor(noteId: Int, title: String?, content: String?, createdAt: String?) : this(
+        noteId = noteId,
+        title = title,
+        content = content,
+        createdAt = createdAt,
+        isPinned = null
+    )
 
     override fun toString(): String {
         return "Note(noteId=$noteId, title=$title, content=$content, createdAt=$createdAt, isPinned=$isPinned)"

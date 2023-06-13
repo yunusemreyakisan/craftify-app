@@ -1,6 +1,5 @@
 package com.morestudio.craftify.data.local.repository
 
-import androidx.lifecycle.LiveData
 import com.morestudio.craftify.data.local.dao.NoteDAO
 import com.morestudio.craftify.data.model.Note
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +23,7 @@ class NoteRepository(private val noteDao: NoteDAO) {
         return noteDao.getNoteCount()
     }
 
-    fun getNoteById(id: Long): Note {
+    fun getNoteById(id: Int): Note {
         return noteDao.getNoteById(id)
     }
 
@@ -43,13 +42,6 @@ class NoteRepository(private val noteDao: NoteDAO) {
     suspend fun delete(note: Note) {
         withContext(Dispatchers.IO) {
             noteDao.deleteNote(note)
-        }
-    }
-
-    //Delete by id
-    suspend fun deleteNoteById(noteId: Int) {
-        withContext(Dispatchers.IO) {
-            noteDao.deleteById(noteId)
         }
     }
 

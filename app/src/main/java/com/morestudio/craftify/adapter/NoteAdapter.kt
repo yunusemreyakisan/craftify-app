@@ -15,6 +15,7 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
 
     // Öğelerin tarihlerine göre sıralanmış bir notlar listesi
     private val sortedNotes = notes.sortedByDescending { it?.createdAt }
+    private var id = 0
 
     //ViewHolder
     inner class VH(val view : NoteItemBinding) : RecyclerView.ViewHolder(view.root), View.OnClickListener{
@@ -22,6 +23,7 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
             view.title.text = note.title
             view.content.text = note.content
             view.createdAt.text = note.createdAt
+            id = note.noteId
         }
         init {
             itemView.setOnClickListener(this)
@@ -33,6 +35,7 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
             val intent = Intent(view.root.context, DetailActivity::class.java)
             intent.putExtra("position", position)
             intent.putExtra("title", view.title.text )
+            intent.putExtra("id", id)
             intent.putExtra("content", view.content.text )
             intent.putExtra("createdAt", view.createdAt.text )
             intent.putExtra("isPinned", view.isPinned.visibility)

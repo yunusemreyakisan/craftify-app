@@ -1,7 +1,5 @@
 package com.morestudio.craftify.data.local.dao
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -30,7 +28,8 @@ interface NoteDAO {
 
     //Get Note by ID
     @Query("SELECT * FROM note WHERE noteId = :id")
-    fun getNoteById(id: Long): Note
+    fun getNoteById(id: Int): Note
+
 
     //insertNote
     @Insert
@@ -43,7 +42,4 @@ interface NoteDAO {
     @Delete
     fun deleteNote(note: Note?)
 
-    //DeleteById
-    @Query("DELETE FROM note WHERE noteId = :noteId")
-    suspend fun deleteById(noteId: Int)
 }
