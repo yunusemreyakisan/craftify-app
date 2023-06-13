@@ -1,4 +1,4 @@
-package com.morestudio.craftify.model
+package com.morestudio.craftify.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

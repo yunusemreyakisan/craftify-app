@@ -1,20 +1,19 @@
-package com.morestudio.craftify.view
+package com.morestudio.craftify.ui
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.morestudio.craftify.adapter.NoteAdapter
-import com.morestudio.craftify.data.database.NoteDatabase
-import com.morestudio.craftify.data.repository.NoteRepository
+import com.morestudio.craftify.data.local.database.NoteDatabase
+import com.morestudio.craftify.data.local.repository.NoteRepository
 import com.morestudio.craftify.databinding.FragmentNoteBinding
-import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.data.model.Note
 import com.morestudio.craftify.viewmodel.NoteFragmentViewModel
 import com.morestudio.craftify.viewmodel.factory.NoteViewModelFactory
 import kotlinx.coroutines.launch

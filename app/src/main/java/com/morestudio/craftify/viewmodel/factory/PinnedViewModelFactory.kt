@@ -2,7 +2,7 @@ package com.morestudio.craftify.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.morestudio.craftify.data.repository.NoteRepository
+import com.morestudio.craftify.data.local.repository.NoteRepository
 import com.morestudio.craftify.viewmodel.PinnedViewModel
 
 class PinnedViewModelFactory(private val repository: NoteRepository) : ViewModelProvider.Factory  {

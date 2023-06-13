@@ -7,14 +7,14 @@
     tools:context=".ui.AddNote">
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
+        android:id="@+id/update_extended_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:contentDescription="extended fab"
-        android:text="@string/notu_kaydet"
+        android:text="@string/update"
         app:icon="@drawable/plus"
         android:fontFamily="@font/urbanist_bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,42 +36,41 @@
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabClose"
+                android:id="@+id/fabDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp"
                 android:contentDescription="@string/fab"
-                android:src="@drawable/close"
+                android:src="@drawable/delete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <EditText
-                android:id="@+id/txtTitle"
+                android:id="@+id/tvDetailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="150dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/urbanist_bold"
-                android:hint="@string/fikrinin_basligi_ne"
                 android:minHeight="48dp"
                 android:textSize="20sp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="50dp" />
 
             <EditText
-                android:id="@+id/txtContent"
+                android:id="@+id/tvDetailContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/urbanist_medium"
-                android:hint="@string/yeni_fikrin_ne"
                 android:minHeight="48dp"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetailTitle"
                 tools:layout_editor_absoluteX="50dp" />
 
 
@@ -81,8 +80,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="150dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtContent"
-                app:layout_constraintTop_toBottomOf="@+id/txtContent">
+                app:layout_constraintStart_toStartOf="@+id/tvDetailContent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetailContent">
 
 
                 <com.google.android.material.card.MaterialCardView
@@ -99,7 +98,7 @@
 
 
                     <TextView
-                        android:id="@+id/olusturulmaTarihiAddNote"
+                        android:id="@+id/olusturulmaTarihiDetailNote"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -126,7 +125,7 @@
 
 
                     <ImageButton
-                        android:id="@+id/isPinnedAddNote"
+                        android:id="@+id/isPinnedDetailNote"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.7"

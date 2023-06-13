@@ -11,4 +11,6 @@
     <string name="notes">Notlarım</string>
     <string name="pinned">Pinlediklerim</string>
     <string name="notu_kaydet">Kaydet</string>
+    <string name="flag_button">flag button</string>
+    <string name="update">Güncelle</string>
 </resources>

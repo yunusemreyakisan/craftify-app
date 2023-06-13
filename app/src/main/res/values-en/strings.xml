@@ -11,4 +11,6 @@
     <string name="notes">Notes</string>
     <string name="pinned">Pinned</string>
     <string name="notu_kaydet">Save</string>
+    <string name="flag_button">flag button</string>
+    <string name="update">Güncelle</string>
 </resources>

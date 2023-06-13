@@ -1,29 +1,26 @@
-package com.morestudio.craftify.view
+package com.morestudio.craftify.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.morestudio.craftify.MainActivity
 import com.morestudio.craftify.R
-import com.morestudio.craftify.data.database.NoteDatabase
-import com.morestudio.craftify.data.repository.NoteRepository
+import com.morestudio.craftify.data.local.database.NoteDatabase
+import com.morestudio.craftify.data.local.repository.NoteRepository
 import com.morestudio.craftify.databinding.ActivityAddNoteBinding
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.isFieldEmpty
-import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.data.model.Note
 import com.morestudio.craftify.viewmodel.AddNoteViewModel
-import com.morestudio.craftify.viewmodel.NoteFragmentViewModel
 import com.morestudio.craftify.viewmodel.factory.AddNoteViewModelFactory
-import com.morestudio.craftify.viewmodel.factory.NoteViewModelFactory
 
 class AddNote : AppCompatActivity() {
-    lateinit var binding : ActivityAddNoteBinding
+    lateinit var binding: ActivityAddNoteBinding
     lateinit var viewModel: AddNoteViewModel
     var createdAt = Helpers.olusturmaZamaniniGetir() //get createdAt time
-    var isPinned : Boolean = false //Pinned State
+    var isPinned: Boolean = false //Pinned State
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,12 +63,14 @@ class AddNote : AppCompatActivity() {
 
 
     //Pinned Func
-    private fun togglePin() {
+    private fun togglePin(): Boolean {
         isPinned = !isPinned // pinli durumun tersine çevir
         if (isPinned) {
             binding.isPinnedAddNote.setImageResource(R.drawable.true_pinned)
+            return true
         } else {
             binding.isPinnedAddNote.setImageResource(R.drawable.flag)
+            return false
         }
     }
 
@@ -79,34 +78,40 @@ class AddNote : AppCompatActivity() {
     //Update Theme
     fun updateTheme() {
         val window = this.window
-        if(Helpers.isDarkThemeEnabled(this)){
+        if (Helpers.isDarkThemeEnabled(this)) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.statusBarColor = this.resources.getColor(R.color.md_theme_dark_background)
-        }else{
+        } else {
             window.statusBarColor = this.resources.getColor(R.color.md_theme_light_background)
         }
     }
 
 
-
     //Save new note
-    fun saveNewNote(createdAt : String){
+    fun saveNewNote(createdAt: String) {
         val title = binding.txtTitle.text.toString()
         val content = binding.txtContent.text.toString()
         val createdAt = createdAt
 
-        if(isFieldEmpty(title, content, createdAt)){
+        if (isFieldEmpty(title, content, createdAt)) {
             Toast.makeText(this, "Lütfen fikrinizi giriniz", Toast.LENGTH_SHORT).show()
-        }else{
-            viewModel.insert( Note( title = title, content =  content, createdAt = createdAt, isPinned = isPinned))
+        } else {
+            togglePin() // isPinned degerinin guncellenmesi
+            viewModel.insert(
+                Note(
+                    title = title,
+                    content = content,
+                    createdAt = createdAt,
+                    isPinned = togglePin()
+                )
+            )
             Toast.makeText(this, "Fikriniz kaydedildi", Toast.LENGTH_SHORT).show()
             //Going Notes page
             Helpers.going(this, MainActivity::class.java)
         }
 
     }
-
 
 
 }

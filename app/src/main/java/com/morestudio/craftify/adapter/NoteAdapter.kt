@@ -1,12 +1,15 @@
 package com.morestudio.craftify.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.morestudio.craftify.R
 import com.morestudio.craftify.databinding.NoteItemBinding
-import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.data.model.Note
+import com.morestudio.craftify.helpers.Helpers
+import com.morestudio.craftify.ui.detail.DetailActivity
 
 class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>() {
 
@@ -14,11 +17,26 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
     private val sortedNotes = notes.sortedByDescending { it?.createdAt }
 
     //ViewHolder
-    inner class VH(val view : NoteItemBinding) : RecyclerView.ViewHolder(view.root){
+    inner class VH(val view : NoteItemBinding) : RecyclerView.ViewHolder(view.root), View.OnClickListener{
         fun bind(note : Note){
             view.title.text = note.title
             view.content.text = note.content
             view.createdAt.text = note.createdAt
+        }
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        //onClick
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            val intent = Intent(view.root.context, DetailActivity::class.java)
+            intent.putExtra("position", position)
+            intent.putExtra("title", view.title.text )
+            intent.putExtra("content", view.content.text )
+            intent.putExtra("createdAt", view.createdAt.text )
+            intent.putExtra("isPinned", view.isPinned.visibility)
+            view.root.context.startActivity(intent)
         }
     }
 

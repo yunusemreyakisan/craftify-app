@@ -1,11 +1,11 @@
-package com.morestudio.craftify.data.database
+package com.morestudio.craftify.data.local.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
-import com.morestudio.craftify.data.dao.NoteDAO
-import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.data.local.dao.NoteDAO
+import com.morestudio.craftify.data.model.Note
 
 
 @Database(entities = [Note::class], version = 1, exportSchema = false)

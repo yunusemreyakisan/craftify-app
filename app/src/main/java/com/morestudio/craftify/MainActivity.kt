@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayoutMediator
 import com.morestudio.craftify.adapter.ViewPagerAdapter
-import com.morestudio.craftify.data.database.NoteDatabase
+import com.morestudio.craftify.data.local.database.NoteDatabase
 import com.morestudio.craftify.databinding.ActivityMainBinding
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.going
-import com.morestudio.craftify.view.AddNote
+import com.morestudio.craftify.ui.AddNote
 
 class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding

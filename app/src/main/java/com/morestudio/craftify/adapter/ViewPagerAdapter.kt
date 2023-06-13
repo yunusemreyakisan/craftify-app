@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.morestudio.craftify.view.NoteFragment
-import com.morestudio.craftify.view.PinnedFragment
+import com.morestudio.craftify.ui.NoteFragment
+import com.morestudio.craftify.ui.PinnedFragment
 
 private const val NUM_TABS = 2
 

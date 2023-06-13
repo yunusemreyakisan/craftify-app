@@ -2,8 +2,8 @@ package com.morestudio.craftify.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.morestudio.craftify.data.repository.NoteRepository
-import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.data.local.repository.NoteRepository
+import com.morestudio.craftify.data.model.Note
 import kotlinx.coroutines.launch
 
 class NoteFragmentViewModel(private val repository: NoteRepository) : ViewModel() {

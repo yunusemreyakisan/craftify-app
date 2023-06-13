@@ -1,4 +1,4 @@
-package com.morestudio.craftify.view
+package com.morestudio.craftify.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.morestudio.craftify.adapter.NoteAdapter
-import com.morestudio.craftify.data.database.NoteDatabase
-import com.morestudio.craftify.data.repository.NoteRepository
+import com.morestudio.craftify.data.local.database.NoteDatabase
+import com.morestudio.craftify.data.local.repository.NoteRepository
 import com.morestudio.craftify.databinding.FragmentPinnedBinding
-import com.morestudio.craftify.model.Note
-import com.morestudio.craftify.viewmodel.AddNoteViewModel
+import com.morestudio.craftify.data.model.Note
 import com.morestudio.craftify.viewmodel.PinnedViewModel
-import com.morestudio.craftify.viewmodel.factory.AddNoteViewModelFactory
 import com.morestudio.craftify.viewmodel.factory.PinnedViewModelFactory
 import kotlinx.coroutines.launch
 
@@ -67,8 +65,6 @@ class PinnedFragment : Fragment() {
 
         //Set adapter
         setRecyclerAdapter()
-
-
 
         return binding.root
     }

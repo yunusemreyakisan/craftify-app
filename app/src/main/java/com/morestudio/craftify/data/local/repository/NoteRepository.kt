@@ -1,8 +1,8 @@
-package com.morestudio.craftify.data.repository
+package com.morestudio.craftify.data.local.repository
 
 import androidx.lifecycle.LiveData
-import com.morestudio.craftify.data.dao.NoteDAO
-import com.morestudio.craftify.model.Note
+import com.morestudio.craftify.data.local.dao.NoteDAO
+import com.morestudio.craftify.data.model.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -46,5 +46,11 @@ class NoteRepository(private val noteDao: NoteDAO) {
         }
     }
 
+    //Delete by id
+    suspend fun deleteNoteById(noteId: Int) {
+        withContext(Dispatchers.IO) {
+            noteDao.deleteById(noteId)
+        }
+    }
 
 }
