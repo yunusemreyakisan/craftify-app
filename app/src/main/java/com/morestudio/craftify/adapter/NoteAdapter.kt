@@ -19,13 +19,15 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
 
 
     //ViewHolder
-    inner class VH(val view : NoteItemBinding) : RecyclerView.ViewHolder(view.root), View.OnClickListener{
-        fun bind(note : Note){
+    inner class VH(val view: NoteItemBinding) : RecyclerView.ViewHolder(view.root),
+        View.OnClickListener {
+        fun bind(note: Note) {
             view.title.text = note.title
             view.content.text = note.content
             view.createdAt.text = note.createdAt
             id = note.noteId
         }
+
         init {
             itemView.setOnClickListener(this)
         }
@@ -35,12 +37,14 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
             val position = adapterPosition
             val intent = Intent(view.root.context, DetailActivity::class.java)
             intent.putExtra("position", position)
-            intent.putExtra("title", view.title.text )
+            intent.putExtra("title", view.title.text)
             intent.putExtra("id", id)
-            intent.putExtra("content", view.content.text )
-            intent.putExtra("createdAt", view.createdAt.text )
+            intent.putExtra("content", view.content.text)
+            intent.putExtra("createdAt", view.createdAt.text)
             intent.putExtra("isPinned", view.isPinned.visibility)
             view.root.context.startActivity(intent)
+
+            //TODO: Detail activity bottom sheet olmalı.
         }
     }
 
@@ -61,7 +65,7 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
         holder.view.title.text = note?.title
         holder.view.createdAt.text = note?.createdAt
 
-        if(note?.isPinned == true){
+        if (note?.isPinned == true) {
             holder.view.isPinned.visibility = View.VISIBLE
         }
     }

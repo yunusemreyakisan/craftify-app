@@ -41,6 +41,7 @@ object Helpers {
     }
 
 
+
     //Intent
     fun going(bulunulanSinif: Activity, gidilecekSinif: Class<*>){
         bulunulanSinif.startActivity(Intent(bulunulanSinif, gidilecekSinif))

@@ -13,4 +13,6 @@
     <string name="notu_kaydet">Save</string>
     <string name="flag_button">flag button</string>
     <string name="update">Güncelle</string>
+    <string name="fikriniz_guncellendi">Fikriniz güncellendi</string>
+    <string name="lutfen_fikrinizi_giriniz">Lütfen fikrinizi giriniz</string>
 </resources>

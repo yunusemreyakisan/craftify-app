@@ -34,7 +34,7 @@ interface NoteDAO {
 
 
     //insertNote
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(vararg note: Note)
 
     @Update

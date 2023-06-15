@@ -23,7 +23,7 @@ import com.morestudio.craftify.viewmodel.factory.NoteDetailViewModelFactory
 class DetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityDetailBinding
     lateinit var viewModel: NoteDetailViewModel
-    var isPinned: Boolean = false //Pinned State
+    var isPinnedBool: Boolean = false //Pinned State
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +37,7 @@ class DetailActivity : AppCompatActivity() {
         val createdAt = intent.getStringExtra("createdAt")
         val isPinned = intent.getIntExtra("isPinned", 0)
         val id = intent.getIntExtra("id", 0)
+
 
         Log.e("id", id.toString())
         //get intent data
@@ -54,18 +55,14 @@ class DetailActivity : AppCompatActivity() {
         }!!
 
         //TODO: Güncelleme ve silme islemleri yap.
-
-
         //Pinned
         binding.isPinnedDetailNote.setOnClickListener {
-            togglePin()
+            togglePin(isPinnedBool)
         }
 
         binding.updateExtendedFab.setOnClickListener {
-            updateNote(Note(id, title, content, createdAt, togglePin()))
+            updateNote(Note(id, title, content, createdAt, togglePin(isPinnedBool)))
         }
-
-
 
     }
 
@@ -75,13 +72,12 @@ class DetailActivity : AppCompatActivity() {
         val updatedTitle = binding.tvDetailTitle.text.toString()
         val updatedContent = binding.tvDetailContent.text.toString()
         val updatedCreatedAt = Helpers.olusturmaZamaniniGetir()
-        val isPinned = togglePin()
+        val isPinned = togglePin(isPinnedBool)
 
-        viewModel.delete(note)
         if (Helpers.isFieldEmpty(updatedTitle, updatedContent, updatedCreatedAt)) {
-            Toast.makeText(this, "Lütfen fikrinizi giriniz", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.lutfen_fikrinizi_giriniz), Toast.LENGTH_SHORT).show()
         } else {
-            togglePin()
+            togglePin(isPinned)
             val updatedNote = Note(
                 note.noteId,
                 updatedTitle,
@@ -89,16 +85,16 @@ class DetailActivity : AppCompatActivity() {
                 updatedCreatedAt,
                 isPinned
             )
-            viewModel.insert(updatedNote)
-            Toast.makeText(this, "Fikriniz güncellendi", Toast.LENGTH_SHORT).show()
+            viewModel.update(updatedNote)
+            Toast.makeText(this, getString(R.string.fikriniz_guncellendi), Toast.LENGTH_SHORT).show()
             Helpers.going(this@DetailActivity, MainActivity::class.java)
         }
     }
 
 
     //Pinned Func
-    private fun togglePin(): Boolean {
-        isPinned = !isPinned // pinli durumun tersine çevir
+    private fun togglePin(isPinned: Boolean): Boolean {
+        this.isPinnedBool = !isPinned // pinli durumun tersine çevir
         if (isPinned) {
             binding.isPinnedDetailNote.setImageResource(R.drawable.true_pinned)
             return true
