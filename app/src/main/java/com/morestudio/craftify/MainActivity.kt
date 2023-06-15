@@ -10,7 +10,7 @@ import com.morestudio.craftify.data.local.database.NoteDatabase
 import com.morestudio.craftify.databinding.ActivityMainBinding
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.helpers.Helpers.going
-import com.morestudio.craftify.ui.AddNote
+import com.morestudio.craftify.ui.add.AddNote
 
 class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding

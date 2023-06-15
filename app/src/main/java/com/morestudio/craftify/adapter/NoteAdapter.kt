@@ -17,6 +17,7 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
     private val sortedNotes = notes.sortedByDescending { it?.createdAt }
     private var id = 0
 
+
     //ViewHolder
     inner class VH(val view : NoteItemBinding) : RecyclerView.ViewHolder(view.root), View.OnClickListener{
         fun bind(note : Note){
@@ -64,6 +65,5 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
             holder.view.isPinned.visibility = View.VISIBLE
         }
     }
-
 
 }

@@ -1,4 +1,4 @@
-package com.morestudio.craftify.ui
+package com.morestudio.craftify.ui.list
 
 import android.os.Bundle
 import android.util.Log
@@ -28,16 +28,6 @@ class NoteFragment : Fragment()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentNoteBinding.inflate(inflater, container, false)
-
         // Create the view model using the factory
         val dataSource = context?.let { NoteDatabase.getDBInstance(it)?.noteDAO() }
         val repository = dataSource?.let { NoteRepository(it) }
@@ -49,19 +39,25 @@ class NoteFragment : Fragment()  {
             )[NoteFragmentViewModel::class.java]
         }!!
 
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentNoteBinding.inflate(inflater, container, false)
+
         //Get All notes
         notes = viewModel.getAllNotes()
-
         //set Recyclerview
-        setRecyclerAdapter()
+        setRecyclerAdapter(notes)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         //Note Size Update UI
         lifecycleScope.launch {
@@ -74,21 +70,17 @@ class NoteFragment : Fragment()  {
             }
         }
 
-
-
-
-
-
     }
 
     //Set Adapter
-    fun setRecyclerAdapter(){
+    fun setRecyclerAdapter(notes: List<Note?>){
         notesAdapter = NoteAdapter(notes)
+        binding.notesRecyclerView.setHasFixedSize(true)
         binding.notesRecyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.notesRecyclerView.adapter = notesAdapter
+        notesAdapter.notifyDataSetChanged()
     }
-
 
 
 }

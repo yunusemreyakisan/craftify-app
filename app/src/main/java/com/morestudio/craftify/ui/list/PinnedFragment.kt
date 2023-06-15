@@ -1,4 +1,4 @@
-package com.morestudio.craftify.ui
+package com.morestudio.craftify.ui.list
 
 import android.os.Bundle
 import android.util.Log

@@ -17,7 +17,7 @@
             android:name=".ui.detail.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AddNote"
+            android:name=".ui.add.AddNote"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

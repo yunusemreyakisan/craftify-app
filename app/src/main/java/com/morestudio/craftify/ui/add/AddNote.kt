@@ -1,4 +1,4 @@
-package com.morestudio.craftify.ui
+package com.morestudio.craftify.ui.add
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
