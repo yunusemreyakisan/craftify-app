@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.add.AddNote">
+    tools:context=".ui.detail.DetailActivity">
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/update_extended_fab"
@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="150dp"
+                android:hint="@string/fikrinin_basligi_ne"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/urbanist_bold"
                 android:minHeight="48dp"
@@ -64,6 +65,7 @@
             <EditText
                 android:id="@+id/tvDetailContent"
                 android:layout_width="match_parent"
+                android:hint="@string/yeni_fikrin_ne"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:background="@android:color/transparent"

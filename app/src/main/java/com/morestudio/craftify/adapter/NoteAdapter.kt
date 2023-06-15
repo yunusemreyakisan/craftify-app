@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.morestudio.craftify.R
 import com.morestudio.craftify.databinding.NoteItemBinding
 import com.morestudio.craftify.data.model.Note
@@ -12,7 +13,6 @@ import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.ui.detail.DetailActivity
 
 class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>() {
-
     // Öğelerin tarihlerine göre sıralanmış bir notlar listesi
     private val sortedNotes = notes.sortedByDescending { it?.createdAt }
     private var id = 0
@@ -56,7 +56,7 @@ class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val note = sortedNotes.get(position)
+        val note = sortedNotes[position]
         holder.view.content.text = note?.content
         holder.view.title.text = note?.title
         holder.view.createdAt.text = note?.createdAt

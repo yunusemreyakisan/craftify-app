@@ -1,5 +1,6 @@
 package com.morestudio.craftify.data.local.repository
 
+import androidx.lifecycle.LiveData
 import com.morestudio.craftify.data.local.dao.NoteDAO
 import com.morestudio.craftify.data.model.Note
 import kotlinx.coroutines.Dispatchers
@@ -23,22 +24,27 @@ class NoteRepository(private val noteDao: NoteDAO) {
         return noteDao.getNoteCount()
     }
 
-    fun getNoteById(id: Int): Note {
+    //Get Note by Id
+    fun getNoteById(id: Int): LiveData<Note> {
         return noteDao.getNoteById(id)
     }
 
+
+    //INSERT
     suspend fun insert(note: Note) {
         withContext(Dispatchers.IO) {
             noteDao.insertNote(note)
         }
     }
 
+    //UPDATE
     suspend fun update(note: Note) {
         withContext(Dispatchers.IO) {
             noteDao.updateNote(note)
         }
     }
 
+    //DELETE
     suspend fun delete(note: Note) {
         withContext(Dispatchers.IO) {
             noteDao.deleteNote(note)

@@ -20,9 +20,9 @@ import kotlinx.coroutines.launch
 
 
 class NoteFragment : Fragment()  {
-    lateinit var notesAdapter : NoteAdapter
     lateinit var binding : FragmentNoteBinding
     private var notes : List<Note?> = ArrayList()
+    var notesAdapter : NoteAdapter = NoteAdapter(notes)
     private lateinit var viewModel: NoteFragmentViewModel
 
 
@@ -38,6 +38,9 @@ class NoteFragment : Fragment()  {
                 it
             )[NoteFragmentViewModel::class.java]
         }!!
+
+        //Get All notes
+        notes = viewModel.getAllNotes()
 
     }
 

@@ -12,6 +12,10 @@ class NoteDetailViewModel(private val repository: NoteRepository) : ViewModel() 
         repository.update(note)
     }
 
+    //Insert
+    fun insert(note: Note) = viewModelScope.launch {
+        repository.insert(note)
+    }
     //Delete
     fun delete(note: Note) = viewModelScope.launch {
         repository.delete(note)

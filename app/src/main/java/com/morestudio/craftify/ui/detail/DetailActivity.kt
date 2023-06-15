@@ -30,7 +30,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        //Get
         val position = intent.getIntExtra("position", -1)
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
@@ -38,6 +38,7 @@ class DetailActivity : AppCompatActivity() {
         val isPinned = intent.getIntExtra("isPinned", 0)
         val id = intent.getIntExtra("id", 0)
 
+        Log.e("id", id.toString())
         //get intent data
         getAndSetIntentData(position, title, content, createdAt, isPinned)
 
@@ -55,46 +56,45 @@ class DetailActivity : AppCompatActivity() {
         //TODO: Güncelleme ve silme islemleri yap.
 
 
-        //Guncelleme
-        binding.updateExtendedFab.setOnClickListener {
-            updateNote()
-        }
-
         //Pinned
         binding.isPinnedDetailNote.setOnClickListener {
             togglePin()
         }
 
+        binding.updateExtendedFab.setOnClickListener {
+            updateNote(Note(id, title, content, createdAt, togglePin()))
+        }
+
 
 
     }
 
 
-    //Not guncelleme
-    private fun updateNote(){
+    // Notu güncelleme
+    private fun updateNote(note: Note) {
         val updatedTitle = binding.tvDetailTitle.text.toString()
         val updatedContent = binding.tvDetailContent.text.toString()
-        val updatedCreatedAt = Helpers.olusturmaZamaniniGetir() //get createdAt time
+        val updatedCreatedAt = Helpers.olusturmaZamaniniGetir()
         val isPinned = togglePin()
 
+        viewModel.delete(note)
         if (Helpers.isFieldEmpty(updatedTitle, updatedContent, updatedCreatedAt)) {
             Toast.makeText(this, "Lütfen fikrinizi giriniz", Toast.LENGTH_SHORT).show()
         } else {
-            togglePin() // isPinned degerinin guncellenmesi
-            viewModel.update(
-                Note(
-                    title = updatedTitle,
-                    content = updatedContent,
-                    createdAt = updatedCreatedAt,
-                    isPinned = isPinned
-                )
+            togglePin()
+            val updatedNote = Note(
+                note.noteId,
+                updatedTitle,
+                updatedContent,
+                updatedCreatedAt,
+                isPinned
             )
+            viewModel.insert(updatedNote)
             Toast.makeText(this, "Fikriniz güncellendi", Toast.LENGTH_SHORT).show()
-            //Going Notes page
-            Helpers.going(this, MainActivity::class.java)
-            Log.e("Guncllenedi: ", updatedContent )
+            Helpers.going(this@DetailActivity, MainActivity::class.java)
         }
     }
+
 
     //Pinned Func
     private fun togglePin(): Boolean {
