@@ -61,7 +61,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.updateExtendedFab.setOnClickListener {
-            updateNote(Note(id, title, content, createdAt, togglePin(isPinnedBool)))
+            updateNote(Note(title, content, createdAt, togglePin(isPinnedBool)))
         }
 
     }
@@ -75,18 +75,18 @@ class DetailActivity : AppCompatActivity() {
         val isPinned = togglePin(isPinnedBool)
 
         if (Helpers.isFieldEmpty(updatedTitle, updatedContent, updatedCreatedAt)) {
-            Toast.makeText(this, getString(R.string.lutfen_fikrinizi_giriniz), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.lutfen_fikrinizi_giriniz), Toast.LENGTH_SHORT)
+                .show()
         } else {
-            togglePin(isPinned)
             val updatedNote = Note(
-                note.noteId,
                 updatedTitle,
                 updatedContent,
                 updatedCreatedAt,
                 isPinned
             )
             viewModel.update(updatedNote)
-            Toast.makeText(this, getString(R.string.fikriniz_guncellendi), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.fikriniz_guncellendi), Toast.LENGTH_SHORT)
+                .show()
             Helpers.going(this@DetailActivity, MainActivity::class.java)
         }
     }

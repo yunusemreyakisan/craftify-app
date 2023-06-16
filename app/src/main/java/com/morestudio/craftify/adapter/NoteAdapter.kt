@@ -1,18 +1,23 @@
 package com.morestudio.craftify.adapter
 
 import android.content.Intent
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.morestudio.craftify.R
+import com.morestudio.craftify.data.local.dao.NoteDAO
+import com.morestudio.craftify.data.local.repository.NoteRepository
 import com.morestudio.craftify.databinding.NoteItemBinding
 import com.morestudio.craftify.data.model.Note
 import com.morestudio.craftify.helpers.Helpers
 import com.morestudio.craftify.ui.detail.DetailActivity
+import java.util.Collections.addAll
 
-class NoteAdapter(var notes: List<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>() {
+class NoteAdapter(var notes: MutableList<Note?>) : RecyclerView.Adapter<NoteAdapter.VH>() {
     // Öğelerin tarihlerine göre sıralanmış bir notlar listesi
     private val sortedNotes = notes.sortedByDescending { it?.createdAt }
     private var id = 0

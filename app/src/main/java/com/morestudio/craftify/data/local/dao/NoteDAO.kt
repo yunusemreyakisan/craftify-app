@@ -18,11 +18,11 @@ interface NoteDAO {
 
     //Get Notes
     @Query("SELECT * FROM note")
-    fun getAllNotes(): List<Note?>
+    fun getAllNotes(): MutableList<Note?>
 
     //Get Pinned Notes
     @Query("SELECT * FROM note WHERE isPinned = 1")
-    fun getPinnedNotes(): List<Note?>
+    fun getPinnedNotes(): MutableList<Note?>
 
     //Get Pinned Notes Size
     @Query("SELECT COUNT(isPinned) FROM note")
@@ -38,10 +38,10 @@ interface NoteDAO {
     suspend fun insertNote(vararg note: Note)
 
     @Update
-    suspend fun updateNote(vararg note: Note)
+    suspend fun updateNote(note: Note)
 
     //deleteNote
     @Delete
-    suspend fun deleteNote(note: Note)
+    fun deleteNote(note: Note)
 
 }

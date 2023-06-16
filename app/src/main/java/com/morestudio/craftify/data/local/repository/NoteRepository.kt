@@ -8,11 +8,11 @@ import kotlinx.coroutines.withContext
 
 class NoteRepository(private val noteDao: NoteDAO) {
 
-    fun getAllNotes(): List<Note?> {
+    fun getAllNotes(): MutableList<Note?> {
         return noteDao.getAllNotes()
     }
 
-    fun getAllPinnedNotes(): List<Note?> {
+    fun getAllPinnedNotes(): MutableList<Note?> {
         return noteDao.getPinnedNotes()
     }
 

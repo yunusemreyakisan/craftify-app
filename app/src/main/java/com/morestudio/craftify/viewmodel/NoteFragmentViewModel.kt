@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class NoteFragmentViewModel(private val repository: NoteRepository) : ViewModel() {
 
     //Get All Notes
-    fun getAllNotes(): List<Note?> {
+    fun getAllNotes(): MutableList<Note?> {
         return repository.getAllNotes()
     }
 

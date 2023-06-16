@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.morestudio.craftify.adapter.NoteAdapter
+import com.morestudio.craftify.data.local.dao.NoteDAO
 import com.morestudio.craftify.data.local.database.NoteDatabase
 import com.morestudio.craftify.data.local.repository.NoteRepository
 import com.morestudio.craftify.databinding.FragmentNoteBinding
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
 
 class NoteFragment : Fragment()  {
     lateinit var binding : FragmentNoteBinding
-    private var notes : List<Note?> = ArrayList()
+    private var notes : MutableList<Note?> = ArrayList()
     var notesAdapter : NoteAdapter = NoteAdapter(notes)
     private lateinit var viewModel: NoteFragmentViewModel
 
@@ -54,7 +55,7 @@ class NoteFragment : Fragment()  {
         //Get All notes
         notes = viewModel.getAllNotes()
         //set Recyclerview
-        setRecyclerAdapter(notes)
+        setRecyclerAdapter(notes as MutableList<Note?>)
 
         return binding.root
     }
@@ -76,7 +77,7 @@ class NoteFragment : Fragment()  {
     }
 
     //Set Adapter
-    fun setRecyclerAdapter(notes: List<Note?>){
+    fun setRecyclerAdapter(notes: MutableList<Note?>){
         notesAdapter = NoteAdapter(notes)
         binding.notesRecyclerView.setHasFixedSize(true)
         binding.notesRecyclerView.layoutManager =

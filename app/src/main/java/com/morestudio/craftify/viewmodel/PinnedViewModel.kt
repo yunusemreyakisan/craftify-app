@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class PinnedViewModel(private val repository: NoteRepository) : ViewModel() {
 
     //Get All Pinned Notes
-    fun getAllPinnedNotes(): List<Note?> {
+    fun getAllPinnedNotes(): MutableList<Note?> {
         return repository.getAllPinnedNotes()
     }
 

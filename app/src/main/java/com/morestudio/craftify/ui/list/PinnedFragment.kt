@@ -23,7 +23,7 @@ class PinnedFragment : Fragment() {
     lateinit var binding : FragmentPinnedBinding
     lateinit var pinnedNotesAdapter : NoteAdapter
     private lateinit var viewModel: PinnedViewModel
-    private var pinnedNotes : List<Note?> = ArrayList()
+    private var pinnedNotes : MutableList<Note?> = ArrayList()
     var pinnedNoteSize : Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
