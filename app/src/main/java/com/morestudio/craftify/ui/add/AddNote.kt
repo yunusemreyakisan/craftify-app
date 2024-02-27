@@ -65,18 +65,18 @@ class AddNote : AppCompatActivity() {
     //Pinned Func
     private fun togglePin(): Boolean {
         isPinned = !isPinned // pinli durumun tersine çevir
-        if (isPinned) {
+        return if (isPinned) {
             binding.isPinnedAddNote.setImageResource(R.drawable.true_pinned)
-            return true
+            true
         } else {
             binding.isPinnedAddNote.setImageResource(R.drawable.flag)
-            return false
+            false
         }
     }
 
 
     //Update Theme
-    fun updateTheme() {
+    private fun updateTheme() {
         val window = this.window
         if (Helpers.isDarkThemeEnabled(this)) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -89,12 +89,12 @@ class AddNote : AppCompatActivity() {
 
 
     //Save new note
-    fun saveNewNote(createdAt: String) {
+    private fun saveNewNote(createdAt: String) {
         val title = binding.txtTitle.text.toString()
         val content = binding.txtContent.text.toString()
-        val createdAt = createdAt
+        val created = createdAt
 
-        if (isFieldEmpty(title, content, createdAt)) {
+        if (isFieldEmpty(title, content, created)) {
             Toast.makeText(this, "Lütfen fikrinizi giriniz", Toast.LENGTH_SHORT).show()
         } else {
             togglePin() // isPinned degerinin guncellenmesi

@@ -77,7 +77,7 @@ class NoteFragment : Fragment()  {
     }
 
     //Set Adapter
-    fun setRecyclerAdapter(notes: MutableList<Note?>){
+    private fun setRecyclerAdapter(notes: MutableList<Note?>){
         notesAdapter = NoteAdapter(notes)
         binding.notesRecyclerView.setHasFixedSize(true)
         binding.notesRecyclerView.layoutManager =
